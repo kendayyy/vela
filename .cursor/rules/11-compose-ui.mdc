@@ -1,0 +1,20 @@
+---
+description: Vela Compose UI, accessibility, and visual identity rules
+globs: "code/app/src/main/java/com/vela/notes/{ui,navigation}/**/*.kt"
+alwaysApply: false
+---
+
+# Compose UI
+
+- Follow `docs/VELA_UI_SPEC.md` and existing `VelaTheme`, spacing, shape, and typography tokens.
+- Keep Vela Android-native: use edge-to-edge/insets and Focus Capsule; never draw a fake notch, Dynamic Island, or copy iOS pixels/SF Symbols.
+- Use cobalt as the app primary. Preserve amber for scanner/document semantics, deep teal for success/focus/Focus Capsule, cream editor background, and semantic red recording/destructive states.
+- Keep All Notes as the start destination with search, filter, collection chips, content-type cards, and the fixed `Ghi chú mới` CTA.
+- Build list cards from `NoteSummary`; never query Room or files from an individual row.
+- Use Material/Lucide-equivalent Android icons already available; icon buttons need clear content descriptions.
+- Keep touch targets at least 48dp, card/surface corners at 8dp, and bottom-sheet top corners at 16dp.
+- Support light/dark, large font, TalkBack, keyboard-visible editor, landscape, loading, empty, error, missing, and interrupted states.
+- Keep layout dimensions stable; text and controls must not overlap or resize surrounding structure unexpectedly.
+- Formatting controls stay above the IME. Media blocks remain inline and retain open/share/remove behavior.
+- Add stable test tags only where semantic queries are insufficient.
+- Every new interaction requires a Compose test for rendering, callback dispatch, and accessibility semantics.

@@ -1,0 +1,18 @@
+---
+description: Room, attachment storage, permissions, and privacy invariants
+globs: "code/app/src/main/{java/com/vela/notes/data/**,AndroidManifest.xml,res/xml/**}"
+alwaysApply: false
+---
+
+# Data And Privacy
+
+- Room is the source of truth. Save note detail and FTS changes transactionally and preserve stable block ordering.
+- Never use destructive migration. Export every schema version to `code/app/schemas/` and add migration tests for schema changes.
+- Keep UUID string IDs, injected timestamps, soft delete semantics, and FTS indexing of title/Markdown/OCR.
+- Store attachment bytes only in app-private storage; Room stores metadata and validated relative paths, never blobs.
+- Import through staging plus atomic move, enforce the 50 MB limit, compute checksums, and roll back partial batches.
+- Use Photo Picker/SAF and read-only FileProvider grants. Never request broad storage permission.
+- Normalize images and remove EXIF/GPS metadata. Validate MIME, headers, paths, IDs, and provider streams.
+- Soft delete keeps files; permanent removal deletes unreferenced files only after metadata save succeeds.
+- Keep `android:allowBackup="false"` and do not add `INTERNET` permission or network-backed SDKs.
+- Scanner, OCR, audio recording, waveform extraction, and playback must remain fully local.

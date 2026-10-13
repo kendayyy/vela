@@ -1,0 +1,18 @@
+---
+description: Kotlin, coroutine, Hilt, and state architecture conventions
+globs: "code/**/*.{kt,kts}"
+alwaysApply: false
+---
+
+# Kotlin Architecture
+
+- Preserve `Compose UI -> ViewModel -> Repository -> Room/local files`; UI must not call DAOs directly.
+- Use immutable UI models exposed through `StateFlow`; collect them with lifecycle-aware Compose APIs.
+- Keep one-off platform actions at navigation/UI boundaries and durable state in ViewModels.
+- Inject `VelaClock` and `IdGenerator`; do not call wall-clock time or random UUIDs inside business logic.
+- Use Hilt bindings in the existing `di/` modules and scope only resources that should truly be shared.
+- Run file, codec, bitmap, and database-heavy work off the main thread with the appropriate dispatcher.
+- Release CameraX, MediaRecorder, MediaCodec, Media3, handlers, callbacks, and temporary files on every exit path.
+- Prefer sealed states/events and pure reducers for lifecycle-sensitive flows.
+- Keep error messages actionable and never log note text, titles, OCR content, or attachment contents.
+- Follow existing package structure and Kotlin formatting; avoid unrelated refactors during a task.

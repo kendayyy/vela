@@ -1,0 +1,18 @@
+---
+description: Vela test placement, coverage, and regression expectations
+globs: "code/app/src/{test,androidTest}/**/*.kt"
+alwaysApply: false
+---
+
+# Testing
+
+- Mirror production packages under `src/test` and `src/androidTest`.
+- Use plain unit tests for reducers, formatters, planners, validators, peak processing, and injected-clock/ID behavior.
+- Use `kotlinx-coroutines-test` virtual time for debounce, ticker, ordering, cancellation, and serialized-write behavior.
+- Use Robolectric/in-memory Room for DAO, FTS, repository, filesystem, and Android metadata behavior when a device is unnecessary.
+- Use Compose instrumentation tests for visible states, semantics, minimum touch targets, Back, sheets, and callback dispatch.
+- Use emulator/device tests for CameraX, MediaRecorder, MediaCodec, Media3, permissions, FileProvider, and lifecycle release.
+- Tests must be deterministic, clean up files/resources in `@After`, and avoid depending on network or external storage.
+- Never replace a behavior assertion with a smoke assertion merely to make a gate pass.
+- For regressions, add a test that fails before the fix and passes after it.
+- JUnit 4 test methods must return `Unit`; wrap `runBlocking` inside a block body when the last expression is non-Unit.

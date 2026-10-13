@@ -1,0 +1,23 @@
+# Local development caches and generated outputs
+**/.gradle/
+**/.kotlin/
+**/build/
+**/.idea/
+*.iml
+**/local.properties
+**/captures/
+.DS_Store
+Thumbs.db
+
+# Credentials and signing material
+.env
+.env.*
+!.env.example
+!.env.sample
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+**/keystore.properties
+**/signing.properties

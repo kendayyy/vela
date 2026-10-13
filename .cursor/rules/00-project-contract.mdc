@@ -1,0 +1,15 @@
+---
+description: Core Vela product and workspace contract
+alwaysApply: true
+---
+
+# Vela Project Contract
+
+- Read `docs/VELA_CURSOR_SPEC.md` and `docs/VELA_TASKS.md` first. Open only the relevant sections of longer plans/ADRs/UI docs when the current task needs them.
+- Treat `docs/VELA_TASKS.md` as the execution source of truth and ADRs as architectural constraints.
+- Application source, Gradle files, tests, and resources belong only in `code/`. Planning documentation belongs in `docs/`.
+- Never edit generated files under `code/**/build/` or Room output outside `code/app/schemas/`.
+- Vela is Android-only, offline-first, local-only, and privacy-first. Do not add accounts, cloud sync, analytics, ads, Firebase, or `INTERNET` permission.
+- Keep v0.1 within the documented limits: 50 MB files, 60-minute recordings, and 50-page scans.
+- Prefer the existing simple architecture and dependencies; do not add abstractions or libraries without a concrete requirement.
+- Ask only when a product decision is genuinely missing or conflicting; otherwise follow the accepted ADRs.

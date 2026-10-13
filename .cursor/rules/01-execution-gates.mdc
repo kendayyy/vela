@@ -1,0 +1,18 @@
+---
+description: Sequential task execution and verification gates
+alwaysApply: true
+---
+
+# Task And Phase Discipline
+
+1. Find the first unchecked task in `docs/VELA_TASKS.md`; do not skip ahead.
+2. Split that task into the smallest implementation and test steps that can be verified independently.
+3. After each step, run the narrowest relevant compile/test command and fix every failure before continuing.
+4. Before completing a task, run its relevant unit and instrumentation tests plus compilation.
+5. Before completing a phase, run `./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug` and all required device tests.
+6. Mark a task or phase `[x]` only after implementation, tests, and gate all pass.
+7. If a gate fails, remain in the same task and repair it. Never hide, disable, skip, or weaken a failing test or lint rule.
+8. Preserve completed behavior and run regression tests proportional to the affected surface.
+9. Report the exact commands and results at each completed task/phase checkpoint.
+
+On Windows, run Gradle from `E:/vela/code` with `gradlew.bat`.
